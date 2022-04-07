@@ -48,7 +48,7 @@ object Tasks {
     }
 
     private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "Item " + position, "xd " + position, position )
+        return TaskItem(position.toString(), "" + position, "" + position, position,position )
     }
 
 
@@ -78,7 +78,7 @@ data class TaskItem(val id: String,
                     val nameAndSurname: String,
                     val dateOfBirth: String,
                     val phoneNumber: Int,
-                    val avatarNumber: Int = 1) : Parcelable {
+                    var avatarNumber: Int = 1) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,

@@ -20,9 +20,7 @@ class MyTaskRecyclerViewAdapter(
     private val values: List<TaskItem>,
     private val eventListener: ToDoListListener) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -30,14 +28,17 @@ class MyTaskRecyclerViewAdapter(
                 false
             )
         )
+    }
 
+    fun rollImg(): Int{
+        val roll = Roll()
+        return roll.drawNumber()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        val roll = Roll()
-        var value = roll.drawNumber()
-        val resource = when(value){
+        item.avatarNumber = rollImg()
+        val resource = when(item.avatarNumber){
             1 -> R.drawable.builder
             2 -> R.drawable.business_person
             3 -> R.drawable.man

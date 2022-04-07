@@ -39,7 +39,7 @@ class AddTaskFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.saveButton.setOnClickListener{saveTask()}
@@ -49,11 +49,11 @@ class AddTaskFragment : Fragment() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun saveTask() {
         var nameAndSurname: String = binding.inputNameSurname.text.toString()
         var dateOfBirth = binding.inputDateOfBirth.text.toString()
         var phoneNumber = binding.inputPhoneNumber.text.toString().toInt()
+
         val taskItem = TaskItem(
             {nameAndSurname + dateOfBirth}.hashCode().toString(),
             nameAndSurname,

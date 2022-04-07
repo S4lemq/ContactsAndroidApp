@@ -2,7 +2,6 @@ package com.example.contactsmobileapp.data
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.contactsmobileapp.TaskFragment
 import java.util.ArrayList
 import java.util.*
 
@@ -28,11 +27,11 @@ object Tasks {
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addItem(createPlaceholderItem(i))
+            addTask(createPlaceholderItem(i))
         }
     }
 
-    private fun addItem(item: TaskItem) {
+    fun addTask(item: TaskItem) {
         ITEMS.add(item)
     }
 

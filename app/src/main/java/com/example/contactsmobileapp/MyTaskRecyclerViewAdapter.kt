@@ -17,8 +17,8 @@ import java.util.*
  * TODO: Replace the implementation with code for your data type.
  */
 class MyTaskRecyclerViewAdapter(
-    private val values: List<TaskItem>
-) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
+    private val values: List<TaskItem>,
+    private val eventListener: ToDoListListener) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,6 +46,16 @@ class MyTaskRecyclerViewAdapter(
 
         holder.imgView.setImageResource(resource)
         holder.contentView.text = item.nameAndSurname
+
+        holder.itemContainer.setOnClickListener{
+            eventListener.onItemClick(position)
+        }
+
+        holder.itemContainer.setOnLongClickListener{
+            eventListener.onItemLongClick(position)
+            return@setOnLongClickListener true
+        }
+
     }
 
     override fun getItemCount(): Int = values.size

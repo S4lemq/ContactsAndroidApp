@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.contactsmobileapp.data.Tasks
 import com.example.contactsmobileapp.databinding.FragmentItemListBinding
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * A fragment representing a list of Items.
  */
-class TaskFragment : Fragment(), ToDoListListener {
+class TaskFragment : Fragment(), ToDoListListener,
+    CallDialogFragment.onCallDialogInteractionListener {
 
     private lateinit var binding: FragmentItemListBinding
 
@@ -53,6 +55,23 @@ class TaskFragment : Fragment(), ToDoListListener {
     }
 
     override fun onItemLongClick(position: Int) {
-        TODO("Not yet implemented")
+        showCallDialog(position)
+    }
+
+    private fun showCallDialog(position: Int) {
+        val callDialog = CallDialogFragment.newInstance(Tasks.ITEMS.get(position).nameAndSurname,position,this)
+        callDialog.show(requireActivity().supportFragmentManager,"CallDialog")
+    }
+
+    override fun onDialogPositiveClick(pos: Int?) {
+        Tasks.ITEMS.removeAt(pos!!)
+        Snackbar.make(requireView(), "Calling...", Snackbar.LENGTH_LONG)
+            .show()
+    }
+
+    override fun onDialogNegativeClick(pos: Int?) {
+       Snackbar.make(requireView(),"Call canceled", Snackbar.LENGTH_LONG)
+           .setAction("Redo",View.OnClickListener { showCallDialog(pos!!) })
+           .show()
     }
 }

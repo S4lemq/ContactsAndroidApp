@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.databinding.FragmentDisplayTaskBinding
 
 /**
@@ -15,7 +17,7 @@ import com.example.contactsmobileapp.databinding.FragmentDisplayTaskBinding
  */
 class DisplayTaskFragment : Fragment() {
 
-//    val args: DisplayTaskFragmentArgs by navArgs()
+    val args: DisplayTaskFragmentArgs by navArgs()
     lateinit var binding: FragmentDisplayTaskBinding
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -24,6 +26,32 @@ class DisplayTaskFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDisplayTaskBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val task: TaskItem = args.task
+        binding.displayNameAndSurname.text = task.nameAndSurname
+        binding.displayPhoneNumber.text = task.phoneNumber.toString()
+        binding.displayDateOfBirth.text = task.dateOfBirth
+        val resource = when(task.avatarNumber){
+            1 -> R.drawable.builder
+            2 -> R.drawable.business_person
+            3 -> R.drawable.man
+            else -> 1
+        }
+        binding.displayImage.setImageResource(resource)
+
+
+        binding.displayEdit.setOnClickListener{
+            val taskToEdit =
+                DisplayTaskFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(
+                    taskToEdit = task,
+                    edit = true
+                )
+            findNavController().navigate(taskToEdit)
+        }
+
     }
 
 }

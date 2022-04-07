@@ -13,6 +13,18 @@ import java.util.*
  */
 object Tasks {
 
+    fun updateTask(taskToEdit: TaskItem?, newTask: TaskItem){
+        taskToEdit?.let{oldTask->
+            //Perform this operations only when taskToEdit is not null
+            //Find the index of old task
+            val indexOfOldTask = ITEMS.indexOf(oldTask)
+            //place new task in place of oldTask
+            ITEMS.add(indexOfOldTask,newTask)
+            //Remove the oldTask that was move to the next position in the ITEMS list
+            ITEMS.removeAt(indexOfOldTask + 1)
+        }
+    }
+
     /**
      * An array of sample (placeholder) items.
      */
@@ -36,7 +48,7 @@ object Tasks {
     }
 
     private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "Item " + position, position, position )
+        return TaskItem(position.toString(), "Item " + position, "xd " + position, position )
     }
 
 
@@ -60,15 +72,17 @@ dokończ implementację ręcznie. W tym przykładzie (w kolejnych krokach) będz
 ZNACZENIE wyliczenie do paczki.
  */
 
+
+
 data class TaskItem(val id: String,
                     val nameAndSurname: String,
-                    val dateOfBirth: Int,
+                    val dateOfBirth: String,
                     val phoneNumber: Int,
                     val avatarNumber: Int = 1) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readInt(),
+        parcel.readString()!!,
         parcel.readInt(),
         parcel.readInt()
     ) {}
@@ -78,7 +92,7 @@ data class TaskItem(val id: String,
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeString(nameAndSurname)
-        parcel.writeInt(dateOfBirth)
+        parcel.writeString(dateOfBirth)
         parcel.writeInt(phoneNumber)
         parcel.writeInt(avatarNumber)
     }

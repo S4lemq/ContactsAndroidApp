@@ -21,10 +21,30 @@
         android:id="@+id/displayTaskFragment"
         android:name="com.example.contactsmobileapp.DisplayTaskFragment"
         android:label="fragment_display_task"
-        tools:layout="@layout/fragment_display_task" />
+        tools:layout="@layout/fragment_display_task" >
+        <argument
+            android:name="task"
+            app:argType="com.example.contactsmobileapp.data.TaskItem" />
+        <action
+            android:id="@+id/action_displayTaskFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.example.contactsmobileapp.AddTaskFragment"
         android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task" >
+        <argument
+            android:name="taskToEdit"
+            app:argType="com.example.contactsmobileapp.data.TaskItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="edit"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_addTaskFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
 </navigation>

@@ -2,6 +2,7 @@ package com.example.contactsmobileapp.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.contactsmobileapp.TaskFragment
 import java.util.ArrayList
 import java.util.*
 
@@ -36,8 +37,10 @@ object Tasks {
     }
 
     private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "Item " + position, makeDetails(position))
+        return TaskItem(position.toString(), "Item " + position, position, position )
     }
+
+
 
     private fun makeDetails(position: Int): String {
         val builder = StringBuilder()
@@ -60,15 +63,15 @@ ZNACZENIE wyliczenie do paczki.
 
 data class TaskItem(val id: String,
                     val nameAndSurname: String,
-                    val dateOfBirth: Long,
-                    val phoneNumber: Long,
-                    val avatarNumber: Long) : Parcelable {
+                    val dateOfBirth: Int,
+                    val phoneNumber: Int,
+                    val avatarNumber: Int = 1) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readLong(),
-        parcel.readLong(),
-        parcel.readLong()
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt()
     ) {}
 
     override fun toString(): String = nameAndSurname
@@ -76,9 +79,9 @@ data class TaskItem(val id: String,
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeString(nameAndSurname)
-        parcel.writeLong(dateOfBirth)
-        parcel.writeLong(phoneNumber)
-        parcel.writeLong(avatarNumber)
+        parcel.writeInt(dateOfBirth)
+        parcel.writeInt(phoneNumber)
+        parcel.writeInt(avatarNumber)
     }
 
     override fun describeContents(): Int {

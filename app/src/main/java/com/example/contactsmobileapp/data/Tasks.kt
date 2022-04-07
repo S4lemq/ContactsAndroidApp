@@ -48,7 +48,7 @@ object Tasks {
     }
 
     private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "" + position, "" + position, position,position )
+        return TaskItem(position.toString(), "" + position, "" + position, position.toLong(),position )
     }
 
 
@@ -77,13 +77,13 @@ ZNACZENIE wyliczenie do paczki.
 data class TaskItem(val id: String,
                     val nameAndSurname: String,
                     val dateOfBirth: String,
-                    val phoneNumber: Int,
+                    val phoneNumber: Long,
                     var avatarNumber: Int = 1) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readInt(),
+        parcel.readLong(),
         parcel.readInt()
     ) {}
 
@@ -93,7 +93,7 @@ data class TaskItem(val id: String,
         parcel.writeString(id)
         parcel.writeString(nameAndSurname)
         parcel.writeString(dateOfBirth)
-        parcel.writeInt(phoneNumber)
+        parcel.writeLong(phoneNumber)
         parcel.writeInt(avatarNumber)
     }
 

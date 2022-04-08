@@ -67,7 +67,10 @@ class TaskFragment : Fragment(), ToDoListListener,
     }
 
     private fun showCallDialog(position: Int) {
-        val callDialog = CallDialogFragment.newInstance(Tasks.ITEMS.get(position).nameAndSurname,position,this)
+        val callDialog = CallDialogFragment.newInstance(
+            (Tasks.ITEMS.get(position).name + " " + Tasks.ITEMS.get(position).surname),
+            position,
+            this)
         callDialog.show(requireActivity().supportFragmentManager,"CallDialog")
     }
 

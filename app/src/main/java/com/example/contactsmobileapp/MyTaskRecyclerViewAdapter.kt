@@ -47,7 +47,7 @@ class MyTaskRecyclerViewAdapter(private val values: List<TaskItem>,
         }
 
         holder.imgView.setImageResource(resource)
-        holder.contentView.text = item.nameAndSurname
+        holder.contentView.text = item.name + " " + item.surname
 
         holder.itemContainer.setOnClickListener{
             eventListener.onItemClick(position)

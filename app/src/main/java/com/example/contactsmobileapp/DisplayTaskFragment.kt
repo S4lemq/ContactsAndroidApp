@@ -31,7 +31,7 @@ class DisplayTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val task: TaskItem = args.task
-        binding.displayNameAndSurname.text = task.nameAndSurname
+        binding.displayNameAndSurname.text = task.name + " " + task.surname
         binding.displayPhoneNumber.text = task.phoneNumber.toString()
         binding.displayDateOfBirth.text = task.dateOfBirth
         val resource = when(task.avatarNumber){

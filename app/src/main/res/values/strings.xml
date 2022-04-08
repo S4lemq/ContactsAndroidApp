@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_name_and_surname">Jacek Szparson</string>
     <string name="default_date_of_birth">01/01/1970</string>
+    <string name="default_name">Jacek</string>
+    <string name="default_surname">Szparson</string>
 </resources>

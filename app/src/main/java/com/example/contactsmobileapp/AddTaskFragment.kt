@@ -14,8 +14,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.data.Tasks
 import com.example.contactsmobileapp.databinding.FragmentAddTaskBinding
-import com.example.contactsmobileapp.warnMessages.validators.manageEditPhoneNumber
-import com.example.contactsmobileapp.warnMessages.checkPhoneNumber
+import com.example.contactsmobileapp.warnMessages.*
+import com.example.contactsmobileapp.warnMessages.validator.manageEditPhoneNumber
 import java.util.*
 
 /**
@@ -45,28 +45,42 @@ class AddTaskFragment() : Fragment(), Parcelable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
+        manageEditNameAndSurname(binding.inputName, binding.warnName)
+        manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
+        manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
+
         binding.saveButton.setOnClickListener{
-            if(checkPhoneNumber(binding.inputPhoneNumber))
-            saveTask()
+            if(checkPhoneNumber(binding.inputPhoneNumber) &&
+                checkName(binding.inputName) &&
+                checkName(binding.inputSurname) &&
+                checkDateOfBirth(binding.inputDateOfBirth))
+                saveTask()
         }
-        binding.inputNameSurname.setText(args.taskToEdit?.nameAndSurname)
+
+        binding.inputName.setText(args.taskToEdit?.name)
+        binding.inputSurname.setText(args.taskToEdit?.surname)
         binding.inputDateOfBirth.setText(args.taskToEdit?.dateOfBirth)
         binding.inputPhoneNumber.setText(args.taskToEdit?.phoneNumber.toString())
     }
 
+
+
     private fun saveTask() {
-        var nameAndSurname: String = binding.inputNameSurname.text.toString()
+        var name: String = binding.inputName.text.toString()
+        var surname: String = binding.inputSurname.text.toString()
         var dateOfBirth = binding.inputDateOfBirth.text.toString()
         var phoneNumber = binding.inputPhoneNumber.text.toString()
 
         val taskItem = TaskItem(
-            {nameAndSurname + dateOfBirth}.hashCode().toString(),
-            nameAndSurname,
+            {name+ surname + dateOfBirth}.hashCode().toString(),
+            name,
+            surname,
             dateOfBirth,
             phoneNumber.toLong()
         )
 
-        if(nameAndSurname.isEmpty()) nameAndSurname = getString(R.string.default_name_and_surname) + "${Tasks.ITEMS.size + 1}"
+        if(name.isEmpty()) name = getString(R.string.default_name) + "${Tasks.ITEMS.size + 1}"
+        if(surname.isEmpty()) surname = getString(R.string.default_surname)
         if(dateOfBirth.isEmpty()) dateOfBirth = getString(R.string.default_date_of_birth)
 
         if(!args.edit){

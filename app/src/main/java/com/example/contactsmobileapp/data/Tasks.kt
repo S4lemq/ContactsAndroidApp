@@ -48,7 +48,7 @@ object Tasks {
     }
 
     private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "" + position, "" + position, position.toLong(),position )
+        return TaskItem(position.toString(), "" + position, "" + position,"" + position, position.toLong(),position )
     }
 
 }
@@ -65,7 +65,8 @@ ZNACZENIE wyliczenie do paczki.
 
 
 data class TaskItem(val id: String,
-                    val nameAndSurname: String,
+                    val name: String,
+                    val surname: String,
                     val dateOfBirth: String,
                     val phoneNumber: Long,
                     var avatarNumber: Int = 1) : Parcelable {
@@ -73,15 +74,18 @@ data class TaskItem(val id: String,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString()!!,
         parcel.readLong(),
         parcel.readInt()
     ) {}
 
-    override fun toString(): String = nameAndSurname
+    override fun toString(): String = name + " " + surname
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeString(nameAndSurname)
+        parcel.writeString(name)
+        parcel.writeString(surname)
         parcel.writeString(dateOfBirth)
         parcel.writeLong(phoneNumber)
         parcel.writeInt(avatarNumber)

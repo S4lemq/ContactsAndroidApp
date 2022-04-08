@@ -8,27 +8,27 @@
     tools:context=".AddTaskFragment" >
 
     <TextView
-        android:id="@+id/labelNameSurname"
+        android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Enter name and surname"
+        android:text="Enter name"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/inputNameSurname"
+        android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="name  surname"
+        android:hint="name"
         android:inputType="textPersonName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelNameSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
     <TextView
         android:id="@+id/labelDateOfBirth"
@@ -38,7 +38,7 @@
         android:text="Enter date of birth"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warn_nameAndSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/warn_surname" />
 
     <TextView
         android:id="@+id/labelPhoneNumber"
@@ -85,16 +85,15 @@
         app:layout_constraintTop_toBottomOf="@+id/labelDateOfBirth" />
 
     <TextView
-        android:id="@+id/warn_nameAndSurname"
+        android:id="@+id/warn_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Enter your name"
         android:textColor="@color/design_default_color_error"
         android:textSize="14sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNameSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
     <TextView
         android:id="@+id/warn_dateOfBirth"
@@ -109,12 +108,45 @@
 
     <TextView
         android:id="@+id/warn_phoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="19dp"
         android:layout_marginStart="16dp"
         android:text="..."
         android:textColor="@color/design_default_color_error"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPhoneNumber" />
+
+    <TextView
+        android:id="@+id/labelSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Enter surname"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/warn_name" />
+
+    <EditText
+        android:id="@+id/inputSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="surname"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
+
+    <TextView
+        android:id="@+id/warn_surname"
+        android:layout_width="207dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:text="..."
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputSurname" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

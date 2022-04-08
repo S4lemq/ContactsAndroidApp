@@ -1,23 +1,22 @@
 package com.example.contactsmobileapp
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contactsmobileapp.data.Tasks
-import com.example.contactsmobileapp.databinding.FragmentItemBinding
 import com.example.contactsmobileapp.databinding.FragmentItemListBinding
 import com.example.contactsmobileapp.dialogs.CallDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import java.util.jar.Manifest
 
 /**
  * A fragment representing a list of Items.
@@ -61,6 +60,11 @@ class TaskFragment : Fragment(), ToDoListListener,
                 findNavController().navigate(actionTaskFragmentToDisplayTaskFragment)
     }
 
+    private fun checkPermission(){
+        if(ActivityCompat.checkSelfPermission(requireContext(),android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CALL_PHONE),101)
+        }
+    }
 
     override fun onItemLongClick(position: Int) {
         showCallDialog(position)
@@ -75,9 +79,15 @@ class TaskFragment : Fragment(), ToDoListListener,
     }
 
     override fun onDialogPositiveClick(pos: Int?) {
+        checkPermission()
+        val phoneNumber = Tasks.ITEMS.get(pos!!).phoneNumber.toString()
         Tasks.ITEMS.removeAt(pos!!)
-        Snackbar.make(requireView(), "Calling...", Snackbar.LENGTH_LONG)
-            .show()
+        val callIntent = Intent(Intent.ACTION_CALL)
+        callIntent.data = Uri.parse("tel:$phoneNumber")
+        startActivity(callIntent)
+//
+//        Snackbar.make(requireView(), "Calling...", Snackbar.LENGTH_LONG)
+//            .show()
     }
 
     override fun onDialogNegativeClick(pos: Int?) {

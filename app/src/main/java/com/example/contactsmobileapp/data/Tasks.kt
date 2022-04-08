@@ -51,16 +51,6 @@ object Tasks {
         return TaskItem(position.toString(), "" + position, "" + position, position.toLong(),position )
     }
 
-
-
-    private fun makeDetails(position: Int): String {
-        val builder = StringBuilder()
-        builder.append("Details about Item: ").append(position)
-        for (i in 0..position - 1) {
-            builder.append("\nMore details information here.")
-        }
-        return builder.toString()
-    }
 }
 
 /**

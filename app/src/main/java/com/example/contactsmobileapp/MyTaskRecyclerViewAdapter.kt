@@ -1,6 +1,7 @@
 package com.example.contactsmobileapp
 
 import android.media.Image
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +11,17 @@ import android.widget.TextView
 import com.example.contactsmobileapp.data.Roll
 import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.databinding.FragmentItemBinding
-import java.util.*
+import com.example.contactsmobileapp.databinding.FragmentItemListBinding
 
 /**
  * [RecyclerView.Adapter] that can display a [TaskItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyTaskRecyclerViewAdapter(
-    private val values: List<TaskItem>,
-    private val eventListener: ToDoListListener) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
+class MyTaskRecyclerViewAdapter(private val values: List<TaskItem>,
+                                private val eventListener: ToDoListListener) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -56,7 +57,6 @@ class MyTaskRecyclerViewAdapter(
             eventListener.onItemLongClick(position)
             return@setOnLongClickListener true
         }
-
     }
 
     override fun getItemCount(): Int = values.size
@@ -65,8 +65,6 @@ class MyTaskRecyclerViewAdapter(
         val imgView: ImageView = binding.itemImg
         val contentView: TextView = binding.content
         val itemContainer: View = binding.root
-        /*TO JUŻ BYŁO *///val idView: TextView = binding.itemNumber
-
 
         override fun toString(): String {
             return super.toString() + " '" + contentView.text + "'"

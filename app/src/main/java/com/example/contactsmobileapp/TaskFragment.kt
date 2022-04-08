@@ -1,6 +1,7 @@
 package com.example.contactsmobileapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,9 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import com.example.contactsmobileapp.data.Tasks
+import com.example.contactsmobileapp.databinding.FragmentItemBinding
 import com.example.contactsmobileapp.databinding.FragmentItemListBinding
+import com.example.contactsmobileapp.dialogs.CallDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -20,8 +26,6 @@ class TaskFragment : Fragment(), ToDoListListener,
     CallDialogFragment.onCallDialogInteractionListener {
 
     private lateinit var binding: FragmentItemListBinding
-
-
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -35,7 +39,10 @@ class TaskFragment : Fragment(), ToDoListListener,
             adapter = MyTaskRecyclerViewAdapter(Tasks.ITEMS, this@TaskFragment)
         }
 
-        binding.addButton.setOnClickListener{addButtonClick()}
+        binding.addButton.setOnClickListener{
+            Log.d("chuj", "chuj")
+            addButtonClick()
+        }
         return binding.root
     }
 
@@ -53,6 +60,7 @@ class TaskFragment : Fragment(), ToDoListListener,
             TaskFragmentDirections.actionTaskFragmentToDisplayTaskFragment(Tasks.ITEMS.get(position))
                 findNavController().navigate(actionTaskFragmentToDisplayTaskFragment)
     }
+
 
     override fun onItemLongClick(position: Int) {
         showCallDialog(position)

@@ -42,7 +42,6 @@ class DisplayTaskFragment : Fragment() {
         }
         binding.displayImage.setImageResource(resource)
 
-
         binding.displayEdit.setOnClickListener{
             val taskToEdit =
                 DisplayTaskFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(

@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.data.Contacts
-import com.example.contactsmobileapp.databinding.FragmentAddTaskBinding
+import com.example.contactsmobileapp.databinding.FragmentAddContactBinding
 import com.example.contactsmobileapp.warnMessages.*
 import java.util.*
 
@@ -26,7 +26,7 @@ class AddContactFragment() : Fragment(), Parcelable {
 
     val args: AddContactFragmentArgs by navArgs()
     val logs: String = "passLog"
-    private lateinit var binding: FragmentAddTaskBinding
+    private lateinit var binding: FragmentAddContactBinding
 
     constructor(parcel: Parcel) : this() {
 
@@ -36,7 +36,7 @@ class AddContactFragment() : Fragment(), Parcelable {
                               container: ViewGroup?,
                               avedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAddTaskBinding.inflate(inflater,container,false)
+        binding = FragmentAddContactBinding.inflate(inflater,container,false)
 
         return binding.root
     }
@@ -56,10 +56,10 @@ class AddContactFragment() : Fragment(), Parcelable {
                 saveTask()
         }
 
-        binding.inputName.setText(args.taskToEdit?.name)
-        binding.inputSurname.setText(args.taskToEdit?.surname)
-        binding.inputDateOfBirth.setText(args.taskToEdit?.dateOfBirth)
-        binding.inputPhoneNumber.setText(args.taskToEdit?.phoneNumber.toString())
+        binding.inputName.setText(args.contactToEdit?.name)
+        binding.inputSurname.setText(args.contactToEdit?.surname)
+        binding.inputDateOfBirth.setText(args.contactToEdit?.dateOfBirth)
+        binding.inputPhoneNumber.setText(args.contactToEdit?.phoneNumber.toString())
     }
 
 
@@ -85,13 +85,13 @@ class AddContactFragment() : Fragment(), Parcelable {
         if(!args.edit){
             Contacts.addTask(taskItem)
         }else{
-            Contacts.updateTask(args.taskToEdit,taskItem)
+            Contacts.updateTask(args.contactToEdit,taskItem)
         }
 
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken,0)
 
-        findNavController().popBackStack(R.id.taskFragment,false)
+        findNavController().popBackStack(R.id.contactFragment,false)
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

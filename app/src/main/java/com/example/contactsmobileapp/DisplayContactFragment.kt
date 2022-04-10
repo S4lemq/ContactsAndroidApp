@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.TaskItem
-import com.example.contactsmobileapp.databinding.FragmentDisplayTaskBinding
+import com.example.contactsmobileapp.databinding.FragmentDisplayContactBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -18,19 +18,19 @@ import com.example.contactsmobileapp.databinding.FragmentDisplayTaskBinding
 class DisplayContactFragment : Fragment() {
 
     val args: DisplayContactFragmentArgs by navArgs()
-    lateinit var binding: FragmentDisplayTaskBinding
+    lateinit var binding: FragmentDisplayContactBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDisplayTaskBinding.inflate(inflater, container, false)
+        binding = FragmentDisplayContactBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task: TaskItem = args.task
+        val task: TaskItem = args.contact
         binding.displayNameAndSurname.text = task.name + " " + task.surname
         binding.displayPhoneNumber.text = task.phoneNumber.toString()
         binding.displayDateOfBirth.text = task.dateOfBirth
@@ -45,7 +45,7 @@ class DisplayContactFragment : Fragment() {
         binding.displayEdit.setOnClickListener{
             val taskToEdit =
                 DisplayContactFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(
-                    taskToEdit = task,
+                    contactToEdit = task,
                     edit = true
                 )
             findNavController().navigate(taskToEdit)

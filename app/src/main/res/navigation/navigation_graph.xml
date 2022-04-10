@@ -3,48 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/taskFragment">
+    app:startDestination="@id/contactFragment">
 
     <fragment
-        android:id="@+id/taskFragment"
+        android:id="@+id/contactFragment"
         android:name="com.example.contactsmobileapp.ContactFragment"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" >
         <action
             android:id="@+id/action_taskFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
+            app:destination="@id/addContactFragment" />
         <action
             android:id="@+id/action_taskFragment_to_displayTaskFragment"
-            app:destination="@id/displayTaskFragment" />
+            app:destination="@id/displayContactFragment" />
     </fragment>
     <fragment
-        android:id="@+id/displayTaskFragment"
+        android:id="@+id/displayContactFragment"
         android:name="com.example.contactsmobileapp.DisplayContactFragment"
         android:label="fragment_display_task"
-        tools:layout="@layout/fragment_display_task" >
+        tools:layout="@layout/fragment_display_contact" >
         <argument
-            android:name="task"
+            android:name="contact"
             app:argType="com.example.contactsmobileapp.data.TaskItem" />
         <action
             android:id="@+id/action_displayTaskFragment_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
+            app:destination="@id/addContactFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addTaskFragment"
+        android:id="@+id/addContactFragment"
         android:name="com.example.contactsmobileapp.AddContactFragment"
-        android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" >
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact">
         <argument
-            android:name="taskToEdit"
+            android:name="contactToEdit"
+            android:defaultValue="@null"
             app:argType="com.example.contactsmobileapp.data.TaskItem"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
         <argument
             android:name="edit"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_addTaskFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
+            app:destination="@id/contactFragment" />
     </fragment>
 </navigation>

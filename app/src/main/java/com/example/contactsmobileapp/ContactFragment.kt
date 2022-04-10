@@ -45,7 +45,7 @@ class ContactFragment : Fragment(), ContactAppListener,
     }
 
     private fun addButtonClick() {
-        findNavController().navigate(R.id.action_taskFragment_to_addTaskFragment)
+        findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
     }
 
     companion object {
@@ -55,7 +55,7 @@ class ContactFragment : Fragment(), ContactAppListener,
 
     override fun onItemClick(position: Int) {
         val actionTaskFragmentToDisplayTaskFragment =
-            ContactFragmentDirections.actionTaskFragmentToDisplayTaskFragment(Contacts.ITEMS.get(position))
+            ContactFragmentDirections.actionContactFragmentToDisplayContactFragment(Contacts.ITEMS.get(position))
                 findNavController().navigate(actionTaskFragmentToDisplayTaskFragment)
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.databinding.FragmentDisplayContactBinding
@@ -44,7 +45,7 @@ class DisplayContactFragment : Fragment() {
 
         binding.displayEdit.setOnClickListener{
             val taskToEdit =
-                DisplayContactFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(
+                DisplayContactFragmentDirections.actionDisplayContactFragmentToAddContactFragment(
                     contactToEdit = task,
                     edit = true
                 )

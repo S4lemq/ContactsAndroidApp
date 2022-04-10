@@ -11,10 +11,10 @@
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" >
         <action
-            android:id="@+id/action_taskFragment_to_addTaskFragment"
+            android:id="@+id/action_contactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
         <action
-            android:id="@+id/action_taskFragment_to_displayTaskFragment"
+            android:id="@+id/action_contactFragment_to_displayContactFragment"
             app:destination="@id/displayContactFragment" />
     </fragment>
     <fragment
@@ -26,7 +26,7 @@
             android:name="contact"
             app:argType="com.example.contactsmobileapp.data.TaskItem" />
         <action
-            android:id="@+id/action_displayTaskFragment_to_addTaskFragment"
+            android:id="@+id/action_displayContactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
     </fragment>
     <fragment
@@ -44,7 +44,7 @@
             android:defaultValue="false"
             app:argType="boolean" />
         <action
-            android:id="@+id/action_addTaskFragment_to_taskFragment"
+            android:id="@+id/action_addContactFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
     </fragment>
 </navigation>

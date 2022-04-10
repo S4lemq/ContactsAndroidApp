@@ -1,7 +1,5 @@
 package com.example.contactsmobileapp
 
-import android.media.Image
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +9,13 @@ import android.widget.TextView
 import com.example.contactsmobileapp.data.Roll
 import com.example.contactsmobileapp.data.TaskItem
 import com.example.contactsmobileapp.databinding.FragmentItemBinding
-import com.example.contactsmobileapp.databinding.FragmentItemListBinding
 
 /**
  * [RecyclerView.Adapter] that can display a [TaskItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyTaskRecyclerViewAdapter(private val values: List<TaskItem>,
-                                private val eventListener: ToDoListListener) : RecyclerView.Adapter<MyTaskRecyclerViewAdapter.ViewHolder>() {
+class MyContactRecyclerViewAdapter(private val values: List<TaskItem>,
+                                   private val eventListener: ContactAppListener) : RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

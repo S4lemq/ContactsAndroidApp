@@ -12,16 +12,15 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.contactsmobileapp.data.Tasks
+import com.example.contactsmobileapp.data.Contacts
 import com.example.contactsmobileapp.databinding.FragmentItemListBinding
 import com.example.contactsmobileapp.dialogs.CallDialogFragment
 import com.google.android.material.snackbar.Snackbar
-import java.util.jar.Manifest
 
 /**
  * A fragment representing a list of Items.
  */
-class TaskFragment : Fragment(), ToDoListListener,
+class ContactFragment : Fragment(), ContactAppListener,
     CallDialogFragment.onCallDialogInteractionListener {
 
     private lateinit var binding: FragmentItemListBinding
@@ -35,7 +34,7 @@ class TaskFragment : Fragment(), ToDoListListener,
         // Set the adapter
         with(binding.list){
             layoutManager = LinearLayoutManager(context)
-            adapter = MyTaskRecyclerViewAdapter(Tasks.ITEMS, this@TaskFragment)
+            adapter = MyContactRecyclerViewAdapter(Contacts.ITEMS, this@ContactFragment)
         }
 
         binding.addButton.setOnClickListener{
@@ -56,7 +55,7 @@ class TaskFragment : Fragment(), ToDoListListener,
 
     override fun onItemClick(position: Int) {
         val actionTaskFragmentToDisplayTaskFragment =
-            TaskFragmentDirections.actionTaskFragmentToDisplayTaskFragment(Tasks.ITEMS.get(position))
+            ContactFragmentDirections.actionTaskFragmentToDisplayTaskFragment(Contacts.ITEMS.get(position))
                 findNavController().navigate(actionTaskFragmentToDisplayTaskFragment)
     }
 
@@ -72,7 +71,7 @@ class TaskFragment : Fragment(), ToDoListListener,
 
     private fun showCallDialog(position: Int) {
         val callDialog = CallDialogFragment.newInstance(
-            (Tasks.ITEMS.get(position).name + " " + Tasks.ITEMS.get(position).surname),
+            (Contacts.ITEMS.get(position).name + " " + Contacts.ITEMS.get(position).surname),
             position,
             this)
         callDialog.show(requireActivity().supportFragmentManager,"CallDialog")
@@ -80,8 +79,8 @@ class TaskFragment : Fragment(), ToDoListListener,
 
     override fun onDialogPositiveClick(pos: Int?) {
         checkPermission()
-        val phoneNumber = Tasks.ITEMS.get(pos!!).phoneNumber.toString()
-        Tasks.ITEMS.removeAt(pos!!)
+        val phoneNumber = Contacts.ITEMS.get(pos!!).phoneNumber.toString()
+        Contacts.ITEMS.removeAt(pos!!)
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:$phoneNumber")
         startActivity(callIntent)

@@ -12,12 +12,12 @@ import com.example.contactsmobileapp.databinding.FragmentDisplayTaskBinding
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DisplayTaskFragment.newInstance] factory method to
+ * Use the [DisplayContactFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DisplayTaskFragment : Fragment() {
+class DisplayContactFragment : Fragment() {
 
-    val args: DisplayTaskFragmentArgs by navArgs()
+    val args: DisplayContactFragmentArgs by navArgs()
     lateinit var binding: FragmentDisplayTaskBinding
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class DisplayTaskFragment : Fragment() {
 
         binding.displayEdit.setOnClickListener{
             val taskToEdit =
-                DisplayTaskFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(
+                DisplayContactFragmentDirections.actionDisplayTaskFragmentToAddTaskFragment(
                     taskToEdit = task,
                     edit = true
                 )

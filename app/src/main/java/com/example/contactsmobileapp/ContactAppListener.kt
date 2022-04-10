@@ -1,6 +1,6 @@
 package com.example.contactsmobileapp
 
-interface ToDoListListener {
+interface ContactAppListener {
 
     fun onItemClick(position: Int)
     fun onItemLongClick(position: Int)

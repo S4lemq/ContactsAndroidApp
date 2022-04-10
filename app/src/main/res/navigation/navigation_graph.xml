@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.example.contactsmobileapp.TaskFragment"
+        android:name="com.example.contactsmobileapp.ContactFragment"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/displayTaskFragment"
-        android:name="com.example.contactsmobileapp.DisplayTaskFragment"
+        android:name="com.example.contactsmobileapp.DisplayContactFragment"
         android:label="fragment_display_task"
         tools:layout="@layout/fragment_display_task" >
         <argument
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.example.contactsmobileapp.AddTaskFragment"
+        android:name="com.example.contactsmobileapp.AddContactFragment"
         android:label="fragment_add_task"
         tools:layout="@layout/fragment_add_task" >
         <argument

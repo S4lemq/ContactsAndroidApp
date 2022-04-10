@@ -12,20 +12,19 @@ import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.TaskItem
-import com.example.contactsmobileapp.data.Tasks
+import com.example.contactsmobileapp.data.Contacts
 import com.example.contactsmobileapp.databinding.FragmentAddTaskBinding
 import com.example.contactsmobileapp.warnMessages.*
-import com.example.contactsmobileapp.warnMessages.validator.manageEditPhoneNumber
 import java.util.*
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddTaskFragment.newInstance] factory method to
+ * Use the [AddContactFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddTaskFragment() : Fragment(), Parcelable {
+class AddContactFragment() : Fragment(), Parcelable {
 
-    val args: AddTaskFragmentArgs by navArgs()
+    val args: AddContactFragmentArgs by navArgs()
     val logs: String = "passLog"
     private lateinit var binding: FragmentAddTaskBinding
 
@@ -44,16 +43,16 @@ class AddTaskFragment() : Fragment(), Parcelable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
-        manageEditNameAndSurname(binding.inputName, binding.warnName)
-        manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
-        manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
+//        manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
+//        manageEditNameAndSurname(binding.inputName, binding.warnName)
+//        manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
+//        manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
 
         binding.saveButton.setOnClickListener{
-            if(checkPhoneNumber(binding.inputPhoneNumber) &&
-                checkName(binding.inputName) &&
-                checkName(binding.inputSurname) &&
-                checkDateOfBirth(binding.inputDateOfBirth))
+//            if(checkPhoneNumber(binding.inputPhoneNumber) &&
+//                checkName(binding.inputName) &&
+//                checkName(binding.inputSurname) &&
+//                checkDateOfBirth(binding.inputDateOfBirth))
                 saveTask()
         }
 
@@ -79,14 +78,14 @@ class AddTaskFragment() : Fragment(), Parcelable {
             phoneNumber.toLong()
         )
 
-        if(name.isEmpty()) name = getString(R.string.default_name) + "${Tasks.ITEMS.size + 1}"
+        if(name.isEmpty()) name = getString(R.string.default_name) + "${Contacts.ITEMS.size + 1}"
         if(surname.isEmpty()) surname = getString(R.string.default_surname)
         if(dateOfBirth.isEmpty()) dateOfBirth = getString(R.string.default_date_of_birth)
 
         if(!args.edit){
-            Tasks.addTask(taskItem)
+            Contacts.addTask(taskItem)
         }else{
-            Tasks.updateTask(args.taskToEdit,taskItem)
+            Contacts.updateTask(args.taskToEdit,taskItem)
         }
 
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -103,12 +102,12 @@ class AddTaskFragment() : Fragment(), Parcelable {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<AddTaskFragment> {
-        override fun createFromParcel(parcel: Parcel): AddTaskFragment {
-            return AddTaskFragment(parcel)
+    companion object CREATOR : Parcelable.Creator<AddContactFragment> {
+        override fun createFromParcel(parcel: Parcel): AddContactFragment {
+            return AddContactFragment(parcel)
         }
 
-        override fun newArray(size: Int): Array<AddTaskFragment?> {
+        override fun newArray(size: Int): Array<AddContactFragment?> {
             return arrayOfNulls(size)
         }
     }

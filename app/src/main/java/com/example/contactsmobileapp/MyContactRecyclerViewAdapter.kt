@@ -1,5 +1,6 @@
 package com.example.contactsmobileapp
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
                                    private val eventListener: ContactAppListener) : RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -32,14 +34,23 @@ class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
         return roll.drawNumber()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        item.avatarNumber = rollImg()
+        val rand = rollImg()
         val resource = when(item.avatarNumber){
             1 -> R.drawable.builder
             2 -> R.drawable.business_person
             3 -> R.drawable.man
-            else -> R.drawable.man
+            4 -> R.drawable.costume
+            5 -> R.drawable.dracula
+            6 -> R.drawable.man1
+            7 -> R.drawable.man3
+            8 -> R.drawable.old_man
+            9 -> R.drawable.woman
+            10 -> R.drawable.zombie
+            11 -> R.drawable.zombie2
+            else -> R.drawable.builder
         }
 
         holder.imgView.setImageResource(resource)

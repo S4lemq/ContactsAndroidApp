@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.data.Contacts
+import com.example.contactsmobileapp.data.Roll
 import com.example.contactsmobileapp.databinding.FragmentAddContactBinding
 import com.example.contactsmobileapp.warnMessages.*
 import java.util.*
@@ -60,25 +61,23 @@ class AddContactFragment() : Fragment(), Parcelable {
         binding.inputPhoneNumber.setText(args.contactToEdit?.phoneNumber.toString())
     }
 
-
-
     private fun saveTask() {
         var name: String = binding.inputName.text.toString()
         var surname: String = binding.inputSurname.text.toString()
         var dateOfBirth = binding.inputDateOfBirth.text.toString()
         var phoneNumber = binding.inputPhoneNumber.text.toString()
+        val roll = Roll()
+        var avatarNumber = roll.drawNumber()
+
 
         val contactItem = ContactItem(
             {name+ surname + dateOfBirth}.hashCode().toString(),
             name,
             surname,
             dateOfBirth,
-            phoneNumber.toLong()
+            phoneNumber.toLong(),
+            avatarNumber
         )
-
-        if(name.isEmpty()) name = getString(R.string.default_name) + "${Contacts.ITEMS.size + 1}"
-        if(surname.isEmpty()) surname = getString(R.string.default_surname)
-        if(dateOfBirth.isEmpty()) dateOfBirth = getString(R.string.default_date_of_birth)
 
         if(!args.edit){
             Contacts.addContact(contactItem)

@@ -106,7 +106,7 @@ data class ContactItem(val id: String,
     }
 }
 
-class Roll(val iconAmount: Int = 3){
+class Roll(val iconAmount: Int = 11){
     fun drawNumber(isRangesRandom: Boolean = true): Int{
         if(isRangesRandom){
             return (1..iconAmount).random()

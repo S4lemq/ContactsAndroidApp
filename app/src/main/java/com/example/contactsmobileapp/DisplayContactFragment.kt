@@ -1,5 +1,6 @@
 package com.example.contactsmobileapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +30,7 @@ class DisplayContactFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val contact: ContactItem = args.contact
@@ -39,7 +41,15 @@ class DisplayContactFragment : Fragment() {
             1 -> R.drawable.builder
             2 -> R.drawable.business_person
             3 -> R.drawable.man
-            else -> 1
+            4 -> R.drawable.costume
+            5 -> R.drawable.dracula
+            6 -> R.drawable.man1
+            7 -> R.drawable.man3
+            8 -> R.drawable.old_man
+            9 -> R.drawable.woman
+            10 -> R.drawable.zombie
+            11 -> R.drawable.zombie2
+            else -> R.drawable.builder
         }
         binding.displayImage.setImageResource(resource)
 

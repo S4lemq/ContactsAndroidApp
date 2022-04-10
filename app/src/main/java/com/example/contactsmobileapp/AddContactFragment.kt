@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.contactsmobileapp.data.TaskItem
+import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.data.Contacts
 import com.example.contactsmobileapp.databinding.FragmentAddContactBinding
 import com.example.contactsmobileapp.warnMessages.*
@@ -26,12 +26,9 @@ import java.util.*
 class AddContactFragment() : Fragment(), Parcelable {
 
     val args: AddContactFragmentArgs by navArgs()
-    val logs: String = "passLog"
     private lateinit var binding: FragmentAddContactBinding
 
-    constructor(parcel: Parcel) : this() {
-
-    }
+    constructor(parcel: Parcel) : this() {}
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -71,7 +68,7 @@ class AddContactFragment() : Fragment(), Parcelable {
         var dateOfBirth = binding.inputDateOfBirth.text.toString()
         var phoneNumber = binding.inputPhoneNumber.text.toString()
 
-        val taskItem = TaskItem(
+        val contactItem = ContactItem(
             {name+ surname + dateOfBirth}.hashCode().toString(),
             name,
             surname,
@@ -84,9 +81,9 @@ class AddContactFragment() : Fragment(), Parcelable {
         if(dateOfBirth.isEmpty()) dateOfBirth = getString(R.string.default_date_of_birth)
 
         if(!args.edit){
-            Contacts.addTask(taskItem)
+            Contacts.addContact(contactItem)
         }else{
-            Contacts.updateTask(args.contactToEdit,taskItem)
+            Contacts.updateContact(args.contactToEdit,contactItem)
         }
 
         val inputMethodManager: InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -38,7 +38,6 @@ class ContactFragment : Fragment(), ContactAppListener,
         }
 
         binding.addButton.setOnClickListener{
-            Log.d("chuj", "chuj")
             addButtonClick()
         }
         return binding.root
@@ -84,9 +83,6 @@ class ContactFragment : Fragment(), ContactAppListener,
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:$phoneNumber")
         startActivity(callIntent)
-//
-//        Snackbar.make(requireView(), "Calling...", Snackbar.LENGTH_LONG)
-//            .show()
     }
 
     override fun onDialogNegativeClick(pos: Int?) {

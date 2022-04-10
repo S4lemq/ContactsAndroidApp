@@ -7,18 +7,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.contactsmobileapp.data.Roll
-import com.example.contactsmobileapp.data.TaskItem
+import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.databinding.FragmentItemBinding
 
 /**
- * [RecyclerView.Adapter] that can display a [TaskItem].
+ * [RecyclerView.Adapter] that can display a [ContactItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyContactRecyclerViewAdapter(private val values: List<TaskItem>,
+class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
                                    private val eventListener: ContactAppListener) : RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),

@@ -13,14 +13,14 @@ import java.util.*
  */
 object Contacts {
 
-    fun updateTask(taskToEdit: TaskItem?, newTask: TaskItem){
-        taskToEdit?.let{oldTask->
-            //Perform this operations only when taskToEdit is not null
-            //Find the index of old task
-            val indexOfOldTask = ITEMS.indexOf(oldTask)
-            //place new task in place of oldTask
-            ITEMS.add(indexOfOldTask,newTask)
-            //Remove the oldTask that was move to the next position in the ITEMS list
+    fun updateContact(contactToEdit: ContactItem?, newContact: ContactItem){
+        contactToEdit?.let{ oldContact->
+            //Perform this operations only when contactToEdit is not null
+            //Find the index of old contact
+            val indexOfOldTask = ITEMS.indexOf(oldContact)
+            //place new contact in place of oldContact
+            ITEMS.add(indexOfOldTask,newContact)
+            //Remove the oldContact that was move to the next position in the ITEMS list
             ITEMS.removeAt(indexOfOldTask + 1)
         }
     }
@@ -28,7 +28,7 @@ object Contacts {
     /**
      * An array of sample (placeholder) items.
      */
-    val ITEMS: MutableList<TaskItem> = ArrayList()
+    val ITEMS: MutableList<ContactItem> = ArrayList()
 
     /**
      * A map of sample (placeholder) items, by ID.
@@ -39,16 +39,16 @@ object Contacts {
     init {
         // Add some sample items.
         for (i in 1..COUNT) {
-            addTask(createPlaceholderItem(i))
+            addContact(createPlaceholderItem(i))
         }
     }
 
-    fun addTask(item: TaskItem) {
+    fun addContact(item: ContactItem) {
         ITEMS.add(item)
     }
 
-    private fun createPlaceholderItem(position: Int): TaskItem {
-        return TaskItem(position.toString(), "" + position, "" + position,"" + position, position.toLong(),position )
+    private fun createPlaceholderItem(position: Int): ContactItem {
+        return ContactItem(position.toString(), "" + position, "" + position,"" + position, position.toLong(),position )
     }
 
 }
@@ -64,12 +64,12 @@ ZNACZENIE wyliczenie do paczki.
 
 
 
-data class TaskItem(val id: String,
-                    val name: String,
-                    val surname: String,
-                    val dateOfBirth: String,
-                    val phoneNumber: Long,
-                    var avatarNumber: Int = 1) : Parcelable {
+data class ContactItem(val id: String,
+                       val name: String,
+                       val surname: String,
+                       val dateOfBirth: String,
+                       val phoneNumber: Long,
+                       var avatarNumber: Int = 1) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -95,12 +95,12 @@ data class TaskItem(val id: String,
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<TaskItem> {
-        override fun createFromParcel(parcel: Parcel): TaskItem {
-            return TaskItem(parcel)
+    companion object CREATOR : Parcelable.Creator<ContactItem> {
+        override fun createFromParcel(parcel: Parcel): ContactItem {
+            return ContactItem(parcel)
         }
 
-        override fun newArray(size: Int): Array<TaskItem?> {
+        override fun newArray(size: Int): Array<ContactItem?> {
             return arrayOfNulls(size)
         }
     }

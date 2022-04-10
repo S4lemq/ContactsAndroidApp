@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 
 import androidx.navigation.fragment.navArgs
-import com.example.contactsmobileapp.data.TaskItem
+import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.databinding.FragmentDisplayContactBinding
 
 /**
@@ -31,11 +31,11 @@ class DisplayContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task: TaskItem = args.contact
-        binding.displayNameAndSurname.text = task.name + " " + task.surname
-        binding.displayPhoneNumber.text = task.phoneNumber.toString()
-        binding.displayDateOfBirth.text = task.dateOfBirth
-        val resource = when(task.avatarNumber){
+        val contact: ContactItem = args.contact
+        binding.displayNameAndSurname.text = contact.name + " " + contact.surname
+        binding.displayPhoneNumber.text = contact.phoneNumber.toString()
+        binding.displayDateOfBirth.text = contact.dateOfBirth
+        val resource = when(contact.avatarNumber){
             1 -> R.drawable.builder
             2 -> R.drawable.business_person
             3 -> R.drawable.man
@@ -46,7 +46,7 @@ class DisplayContactFragment : Fragment() {
         binding.displayEdit.setOnClickListener{
             val taskToEdit =
                 DisplayContactFragmentDirections.actionDisplayContactFragmentToAddContactFragment(
-                    contactToEdit = task,
+                    contactToEdit = contact,
                     edit = true
                 )
             findNavController().navigate(taskToEdit)

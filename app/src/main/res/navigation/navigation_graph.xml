@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_display_contact" >
         <argument
             android:name="contact"
-            app:argType="com.example.contactsmobileapp.data.TaskItem" />
+            app:argType="com.example.contactsmobileapp.data.ContactItem" />
         <action
             android:id="@+id/action_displayContactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
@@ -36,9 +36,9 @@
         tools:layout="@layout/fragment_add_contact">
         <argument
             android:name="contactToEdit"
-            android:defaultValue="@null"
-            app:argType="com.example.contactsmobileapp.data.TaskItem"
-            app:nullable="true" />
+            app:argType="com.example.contactsmobileapp.data.ContactItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <argument
             android:name="edit"
             android:defaultValue="false"

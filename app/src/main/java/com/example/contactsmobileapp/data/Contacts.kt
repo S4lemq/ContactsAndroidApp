@@ -48,7 +48,7 @@ object Contacts {
     }
 
     private fun createPlaceholderItem(position: Int): ContactItem {
-        return ContactItem(position.toString(), "" + position, "" + position,"" + position, position.toLong(),position )
+        return ContactItem(position.toString(), "Name", "Surname","Date of birth", (583094619+position).toLong() ,position )
     }
 
 }
@@ -69,7 +69,7 @@ data class ContactItem(val id: String,
                        val surname: String,
                        val dateOfBirth: String,
                        val phoneNumber: Long,
-                       var avatarNumber: Int = 1) : Parcelable {
+                       val avatarNumber: Int = (1..11).random()) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -102,16 +102,6 @@ data class ContactItem(val id: String,
 
         override fun newArray(size: Int): Array<ContactItem?> {
             return arrayOfNulls(size)
-        }
-    }
-}
-
-class Roll(val iconAmount: Int = 11){
-    fun drawNumber(isRangesRandom: Boolean = true): Int{
-        if(isRangesRandom){
-            return (1..iconAmount).random()
-        }else{
-            return Random().nextInt(iconAmount) + 1
         }
     }
 }

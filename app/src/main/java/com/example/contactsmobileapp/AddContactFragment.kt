@@ -13,9 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.data.Contacts
-import com.example.contactsmobileapp.data.Roll
 import com.example.contactsmobileapp.databinding.FragmentAddContactBinding
 import com.example.contactsmobileapp.warnMessages.*
+import com.example.contactsmobileapp.warnMessages.validator.manageEditPhoneNumber
 import java.util.*
 
 
@@ -42,16 +42,16 @@ class AddContactFragment() : Fragment(), Parcelable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
-//        manageEditNameAndSurname(binding.inputName, binding.warnName)
-//        manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
-//        manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
+        manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
+        manageEditNameAndSurname(binding.inputName, binding.warnName)
+        manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
+        manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
 
         binding.saveButton.setOnClickListener{
-//            if(checkPhoneNumber(binding.inputPhoneNumber) &&
-//                checkName(binding.inputName) &&
-//                checkName(binding.inputSurname) &&
-//                checkDateOfBirth(binding.inputDateOfBirth))
+            if(checkPhoneNumber(binding.inputPhoneNumber) &&
+                checkName(binding.inputName) &&
+                checkName(binding.inputSurname) &&
+                checkDateOfBirth(binding.inputDateOfBirth))
                 saveTask()
         }
 
@@ -66,9 +66,7 @@ class AddContactFragment() : Fragment(), Parcelable {
         var surname: String = binding.inputSurname.text.toString()
         var dateOfBirth = binding.inputDateOfBirth.text.toString()
         var phoneNumber = binding.inputPhoneNumber.text.toString()
-        val roll = Roll()
-        var avatarNumber = roll.drawNumber()
-
+        var avatarNumber = (1..11).random()
 
         val contactItem = ContactItem(
             {name+ surname + dateOfBirth}.hashCode().toString(),

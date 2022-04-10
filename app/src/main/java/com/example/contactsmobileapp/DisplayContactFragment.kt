@@ -37,6 +37,7 @@ class DisplayContactFragment : Fragment() {
         binding.displayNameAndSurname.text = contact.name + " " + contact.surname
         binding.displayPhoneNumber.text = contact.phoneNumber.toString()
         binding.displayDateOfBirth.text = contact.dateOfBirth
+
         val resource = when(contact.avatarNumber){
             1 -> R.drawable.builder
             2 -> R.drawable.business_person
@@ -53,7 +54,7 @@ class DisplayContactFragment : Fragment() {
         }
         binding.displayImage.setImageResource(resource)
 
-        binding.displayEdit.setOnClickListener{
+        binding.displayEdit.setOnClickListener {
             val taskToEdit =
                 DisplayContactFragmentDirections.actionDisplayContactFragmentToAddContactFragment(
                     contactToEdit = contact,
@@ -61,7 +62,5 @@ class DisplayContactFragment : Fragment() {
                 )
             findNavController().navigate(taskToEdit)
         }
-
     }
-
 }

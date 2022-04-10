@@ -58,8 +58,8 @@ class DeleteDialogFragment : DialogFragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(name: String, pos: Int, interactionListener: CallDialogFragment.onCallDialogInteractionListener) =
-            CallDialogFragment().apply {
+        fun newInstance(name: String, pos: Int, interactionListener: DeleteDialogFragment.onDeleteDialogInteractionListener) =
+            DeleteDialogFragment().apply {
                 arguments = Bundle().apply {
                     putString(CONTACT_NAME_PARAM, name)
                     putInt(CONTACT_POS_PARAM, pos)

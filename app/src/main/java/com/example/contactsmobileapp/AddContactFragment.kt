@@ -43,12 +43,14 @@ class AddContactFragment() : Fragment(), Parcelable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         manageEditPhoneNumber(binding.inputPhoneNumber, binding.warnPhoneNumber)
+        manageEditPhoneNumber(binding.inputPhoneNumber,binding.warnPhoneNumber)
         manageEditNameAndSurname(binding.inputName, binding.warnName)
         manageEditNameAndSurname(binding.inputSurname, binding.warnSurname)
         manageEditDateOfBirth(binding.inputDateOfBirth,binding.warnDateOfBirth)
 
         binding.saveButton.setOnClickListener{
-            if(checkPhoneNumber(binding.inputPhoneNumber) &&
+            if(checkPhoneNumberLength(binding.inputPhoneNumber) &&
+                checkPhoneNumberFormat(binding.inputPhoneNumber) &&
                 checkName(binding.inputName) &&
                 checkName(binding.inputSurname) &&
                 checkDateOfBirth(binding.inputDateOfBirth))
@@ -58,7 +60,7 @@ class AddContactFragment() : Fragment(), Parcelable {
         binding.inputName.setText(args.contactToEdit?.name)
         binding.inputSurname.setText(args.contactToEdit?.surname)
         binding.inputDateOfBirth.setText(args.contactToEdit?.dateOfBirth)
-        binding.inputPhoneNumber.setText(args.contactToEdit?.phoneNumber.toString())
+        binding.inputPhoneNumber.setText(args.contactToEdit?.phoneNumber)
     }
 
     private fun saveTask() {
@@ -73,7 +75,7 @@ class AddContactFragment() : Fragment(), Parcelable {
             name,
             surname,
             dateOfBirth,
-            phoneNumber.toLong(),
+            phoneNumber,
             avatarNumber
         )
 

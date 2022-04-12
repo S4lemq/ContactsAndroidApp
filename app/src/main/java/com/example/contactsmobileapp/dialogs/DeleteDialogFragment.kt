@@ -33,17 +33,17 @@ class DeleteDialogFragment : DialogFragment() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         builder.setMessage("Delete this contact?" + " $contactNameParam")
         builder.setPositiveButton("Confirm", DialogInterface.OnClickListener{ dialogInterface, i ->
-            mListener?.onDialogPositiveClick(contactPosParam)
+            mListener?.onDialogDeletePositiveClick(contactPosParam)
         })
         builder.setNegativeButton("Discard", DialogInterface.OnClickListener{ dialogInterface, i ->
-            mListener?.onDialogNegativeClick(contactPosParam)
+            mListener?.onDialogDeleteNegativeClick(contactPosParam)
         })
         return builder.create()
     }
 
     interface onDeleteDialogInteractionListener{
-        fun onDialogPositiveClick(pos: Int?)
-        fun onDialogNegativeClick(pos: Int?)
+        fun onDialogDeletePositiveClick(pos: Int?)
+        fun onDialogDeleteNegativeClick(pos: Int?)
     }
 
 

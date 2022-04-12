@@ -48,7 +48,7 @@ object Contacts {
     }
 
     private fun createPlaceholderItem(position: Int): ContactItem {
-        return ContactItem(position.toString(), "Name", "Surname","Date of birth", (583094619+position).toLong() ,position )
+        return ContactItem(position.toString(), "Name", "Surname","Date of birth", "583094619"+position )
     }
 
 }
@@ -68,14 +68,14 @@ data class ContactItem(val id: String,
                        val name: String,
                        val surname: String,
                        val dateOfBirth: String,
-                       val phoneNumber: Long,
+                       val phoneNumber: String,
                        val avatarNumber: Int = (1..11).random()) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readLong(),
+        parcel.readString()!!,
         parcel.readInt()
     ) {}
 
@@ -87,7 +87,7 @@ data class ContactItem(val id: String,
         parcel.writeString(name)
         parcel.writeString(surname)
         parcel.writeString(dateOfBirth)
-        parcel.writeLong(phoneNumber)
+        parcel.writeString(phoneNumber)
         parcel.writeInt(avatarNumber)
     }
 

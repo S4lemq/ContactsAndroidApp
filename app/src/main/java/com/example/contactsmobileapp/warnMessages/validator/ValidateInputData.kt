@@ -2,8 +2,13 @@ package com.example.contactsmobileapp.warnMessages
 
 import android.widget.EditText
 
-fun checkPhoneNumber(phoneNumber: EditText): Boolean{
+fun checkPhoneNumberLength(phoneNumber: EditText): Boolean{
     return (phoneNumber.length() >= 9)
+}
+
+fun checkPhoneNumberFormat(phoneNumber: EditText) : Boolean{
+    var pattern = Regex("^\\+?[1-9][0-9]{7,14}$")
+    return (phoneNumber.getText().toString().matches(pattern))
 }
 
 fun checkName(name: EditText): Boolean{

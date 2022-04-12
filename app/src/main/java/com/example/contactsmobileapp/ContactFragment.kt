@@ -11,16 +11,19 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.contactsmobileapp.data.ContactItem
 import com.example.contactsmobileapp.data.Contacts
 import com.example.contactsmobileapp.databinding.FragmentItemListBinding
 import com.example.contactsmobileapp.dialogs.CallDialogFragment
+import com.example.contactsmobileapp.dialogs.DeleteDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
 /**
  * A fragment representing a list of Items.
  */
-class ContactFragment : Fragment(), ContactAppListener,
-    CallDialogFragment.onCallDialogInteractionListener {
+class ContactFragment() : Fragment(), ContactAppListener,
+    CallDialogFragment.onCallDialogInteractionListener,
+    DeleteDialogFragment.onDeleteDialogInteractionListener {
 
     private lateinit var binding: FragmentItemListBinding
 
@@ -39,12 +42,17 @@ class ContactFragment : Fragment(), ContactAppListener,
         binding.addButton.setOnClickListener{
             addButtonClick()
         }
+
+
+
         return binding.root
     }
 
     private fun addButtonClick() {
         findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
     }
+
+
 
     companion object {
         // TODO: Customize parameter argument names
@@ -89,4 +97,36 @@ class ContactFragment : Fragment(), ContactAppListener,
            .setAction("Redo",View.OnClickListener { showCallDialog(pos!!) })
            .show()
     }
+
+    override fun onDeleteContact(position: Int) {
+        showDeleteDialog(position)
+    }
+
+    private fun showDeleteDialog(position: Int) {
+        val deleteDialog = DeleteDialogFragment.newInstance(
+            (Contacts.ITEMS.get(position).name),
+            position,
+            this)
+
+        deleteDialog.show(requireActivity().supportFragmentManager, "DeleteDialog")
+    }
+
+    override fun onDialogDeletePositiveClick(pos: Int?) {
+        Contacts.ITEMS.removeAt(pos!!)
+        Snackbar.make(requireView(),"Contact Deleted", Snackbar.LENGTH_LONG)
+            .show()
+        notifyDataSetChanged()
+    }
+
+    private fun notifyDataSetChanged() {
+        val rvAdapter = binding.list.adapter
+        rvAdapter?.notifyDataSetChanged()
+    }
+
+    override fun onDialogDeleteNegativeClick(pos: Int?) {
+        Snackbar.make(requireView(),"Delete cancelled", Snackbar.LENGTH_LONG)
+            .setAction("Redo", View.OnClickListener { showDeleteDialog(pos!!) })
+            .show()
+    }
+
 }

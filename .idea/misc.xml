@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout-sw600dp/fragment_add_task.xml" value="0.269921875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_add_contact.xml" value="0.2557291666666667" />
+        <entry key="app/src/main/res/layout/fragment_add_contact.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/fragment_call_dialog.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/layout/fragment_delete_dialog.xml" value="0.1766304347826087" />

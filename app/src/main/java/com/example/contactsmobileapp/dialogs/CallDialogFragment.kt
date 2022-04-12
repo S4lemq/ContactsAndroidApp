@@ -56,9 +56,6 @@ class CallDialogFragment : DialogFragment() {
         return builder.create()
     }
 
-    fun show(require: Unit, s: String) {
-        TODO("Not yet implemented")
-    }
 
     interface onCallDialogInteractionListener{
         fun onDialogPositiveClick(pos: Int?)

@@ -30,11 +30,9 @@ import java.lang.reflect.Array.get
  * TODO: Replace the implementation with code for your data type.
  */
 class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
-                                   private val eventListener: ContactAppListener) : RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder>(),
-    DeleteDialogFragment.onDeleteDialogInteractionListener{
+                                   private val eventListener: ContactAppListener) :  RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder>(){
 
     private lateinit var binding: FragmentItemListBinding
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int,): ViewHolder {
         return ViewHolder(
@@ -64,10 +62,6 @@ class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
             else -> R.drawable.builder
         }
 
-        holder.deleteButton.setOnClickListener{
-           showDeleteDialog(position)
-        }
-
         holder.imgView.setImageResource(resource)
         holder.contentView.text = item.name + " " + item.surname
 
@@ -75,18 +69,14 @@ class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
             eventListener.onItemClick(position)
         }
 
+        holder.deleteButton.setOnClickListener{
+            eventListener.onDeleteContact(position)
+        }
+
         holder.itemContainer.setOnLongClickListener{
             eventListener.onItemLongClick(position)
             return@setOnLongClickListener true
         }
-    }
-
-    private fun showDeleteDialog(position: Int) {
-        val deleteDialog = DeleteDialogFragment.newInstance(
-            (Contacts.ITEMS.get(position).name),
-            position,
-            this)
-        deleteDialog.showsDialog
     }
 
     override fun getItemCount(): Int = values.size
@@ -101,33 +91,4 @@ class MyContactRecyclerViewAdapter(private val values: List<ContactItem>,
             return super.toString() + " '" + contentView.text + "'"
         }
     }
-
-    override fun onDialogPositiveClick(pos: Int?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onDialogNegativeClick(pos: Int?) {
-        TODO("Not yet implemented")
-    }
-
-//    override fun onDialogPositiveClick(pos: Int?) {
-//        Contacts.ITEMS.removeAt(pos!!)
-//        Snackbar.make("Task Deleted", Snackbar.LENGTH_LONG)
-//            .show()
-//        notifyDataSetChanged()
-//    }
-//
-//    override fun onDialogNegativeClick(pos: Int?) {
-//        Snackbar.make(require(),"Delete cancelled", Snackbar.LENGTH_LONG)
-//            .setAction("Redo", View.onClickListener{showDeleteDialog(pos!!)})
-//            .show()
-//
-//    }
-//
-//    private fun notifyDataSetChanged(){
-//
-//        val rvAdapter = binding.list.adapter
-//        rvAdapter?.notifyDataSetChanged()
-//    }
-
 }
